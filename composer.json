@@ -1,0 +1,97 @@
+{
+    "name": "normaflow/normaflow",
+    "type": "project",
+    "description": "SaaS Platform for Regulatory Compliance Management (NOM/STPS) in Mexico and LatAm",
+    "keywords": ["laravel", "compliance", "saas", "normativity", "audit", "hrm"],
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "laravel/pennant": "^1.0",
+        "spatie/laravel-data": "^4.0",
+        "spatie/laravel-permission": "^6.0",
+        "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-event-sourcing": "^5.0",
+        "domain-checker": "^1.10",
+        "laravel/horizon": "^5.24",
+        "laravel/ cashier -stripe": "^19.0",
+        "stripe/stripe-php": "^10.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "league/fractal": "^0.20.0",
+        "prettus/l5-repository": "^2.10",
+        "barryvdh/laravel-dompdf": "^3.0",
+        "barryvdh/laravel-ide-helper": "^3.0",
+        "nwidart/laravel-modules": "^11.0",
+        "bensampo/laravel-enum": "^6.0",
+        "romegassx/laravel-multitenancy": "^2.0",
+        "cache/psr6- Symfony": "^2.0",
+        "ramsey/uuid": "^4.7",
+        "nesbot/carbon": "^3.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.0",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4",
+        "worksome/request-factories": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -e \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "test": [
+            "@php artisan test"
+        ],
+        "pint": [
+            "@php vendor/bin/pint"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
